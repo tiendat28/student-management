@@ -15,7 +15,7 @@ class AccountModel:
         return db.query(Account).all() 
 
     def create_account(db: Session, create:AccountCreate):
-        db_create = Account(name = create.name, surname = create.surname, users=create.users, password=create.password, email=create.email, active=create.active)
+        db_create = Account(name = create.name, surname = create.surname, users=create.users, password=create.password, email=create.email, role=create.role, active=create.active)
         db.add(db_create)
         db.commit()
         db.refresh(db_create)

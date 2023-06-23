@@ -6,6 +6,7 @@ class AccountBase(BaseModel):
     users: str
     password: str
     email: str
+    role: str
 
 class AccountCreate(AccountBase):
     active: bool
