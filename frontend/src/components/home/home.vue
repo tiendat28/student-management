@@ -1,30 +1,23 @@
 <template>
     <div>
-        haha
+        <Header></Header>
+        <Navigation></Navigation>
     </div>
-    
 </template>
 
 <script>
+import Header from '@/components/header/header.vue'
+import Navigation from '@/components/navigation/navigation.vue'
 const Home = {
     data(){
         return{
             data: [],
-            editdata:{id:'', users:'', password:'', surname: '', name: '', email: '', active: 'true'},
+            editdata:{id:'', users:'', password:'', surname: '', name: '', email: '', role:'', active: 'true'},
         }
     },
-    methods:{
-        getAccount(){
-            const token = localStorage.getItem('token')
-            if (!token) {
-                this.$router.push('/login');
-            } else {
-
-            }
-        },
-    },
-    mounted(){
-      this.getAccount()
+    components:{
+        Header,
+        Navigation
     }
 }
 export default Home

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Homes from '@/pages/home/index.vue'
 import Home from '@/components/home/home.vue'
-
+import Courses from '@/components/courses/courses.vue'
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
@@ -14,7 +14,12 @@ const routes: Array<RouteConfig> = [
   {
     path: '/home',
     name: 'home',
-    component: Home
+    component: Home,
+  },
+  {
+    path: '/courses',
+    name: 'courses',
+    component: Courses,
   },
 ]
 

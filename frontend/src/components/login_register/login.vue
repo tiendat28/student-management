@@ -1,20 +1,22 @@
 <template>
     <div class="w-full h-screen flex justify-center items-center ">
-        <div class="bg-white-400 elevation-4 w-[450px] h-[500px] rounded-xl">
-            <h1 class="text-black text-center text-xl py-6 ">Đăng nhập</h1>
+        <div class="bg-white-400 elevation-4 w-[400px] h-[500px] rounded-tl-lg rounded-bl-lg ">
+            <h1 class="text-black text-center text-3xl pt-[50px] font-black">Đăng nhập</h1>
             <v-form v-model="valid" class="m-8" >
                 <v-text-field v-model="editdata.users" :rules="nameRules" label="Tài khoản"></v-text-field>
 
                 <v-text-field v-model="editdata.password" :rules="nameRules" :type="showPassword ? 'password': 'text'"  label="Mật khẩu"></v-text-field>
     
                 <div class="flex justify-between items-center ">
-                    <v-checkbox @click="Show()" label="Hiện mật khẩu"></v-checkbox>
-                    <h2 class="hover:text-blue-500">Quên mật khẩu</h2>
+                    <v-checkbox style="font-size: 14px;" @click="Show()" label="Hiện mật khẩu"></v-checkbox>
+                    <h2 class="text-sm hover:text-blue-500">Quên mật khẩu?</h2>
+                </div>
+
+                <div class="flex justify-center">
+                    <v-btn style="height: 40px;" class="text-center rounded-full w-[150px]" dark color="#0f766e" @click="submit()"> Đăng nhập </v-btn>
                 </div>
                 
-                <v-btn class="text-center" @click="submit()"> Đăng nhập </v-btn>
-
-                <h2 class="py-4">Đăng nhập bằng tài khoản khác</h2>
+                <h2 class="py-6">Đăng nhập bằng tài khoản khác</h2>
 
                 <div class="flex justify-around">
                     <v-icon class="hover:scale-150" style="color: #1906e7">mdi-facebook</v-icon>
@@ -22,11 +24,16 @@
                     <v-icon class="hover:scale-150" style="color: #ba3118">mdi-google</v-icon>
                     <v-icon class="hover:scale-150" style="color: #98e35b">mdi-gmail</v-icon>
                 </div>
-                
+            </v-form>
+        </div>
+        <div class="bg-teal-700 elevation-4 w-[400px] h-[500px] rounded-tr-lg rounded-br-lg ">
+            <div class="pt-[150px]">
+                <h1 class="text-white text-center text-4xl font-black">Chào bạn!</h1>
+                <h2 class="text-white text-center text-base mr-[40px] ml-[40px] pt-[15px] font-light">Nhập thông tin cá nhân của bạn và bắt đầu hành trình với chúng tôi</h2>
                 <v-row class="py-6" justify="center">
                     <v-dialog v-model="dialog" persistent max-width="450px">
                         <template v-slot:activator="{ on, attrs }">
-                            <v-btn color="primary" dark v-bind="attrs" v-on="on">Đăng ký</v-btn>
+                            <v-btn style="border:1px solid white; height: 40px;" class="text-center rounded-full w-[150px]" color="#0f766e" dark v-bind="attrs" v-on="on">Đăng ký</v-btn>
                         </template>
                         <v-card class="w-[450px] h-[500px]">
                             <v-card-title class="text-center">
@@ -42,13 +49,16 @@
                                             <v-text-field label="Mật khẩu" :rules="nameRules" v-model="editdata.password" required></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="6">
-                                            <v-text-field label="Họ" :rules="nameRules" v-model="editdata.surname" required></v-text-field>
+                                            <v-text-field label="Họ, tên đệm" :rules="nameRules" v-model="editdata.surname" required></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="6">
                                             <v-text-field label="Tên" :rules="nameRules" v-model="editdata.name" required></v-text-field>
                                         </v-col>
-                                        <v-col cols="12" sm="6" md="12">
+                                        <v-col cols="12" sm="6" md="6">
                                             <v-text-field label="Email" :rules="emailRules" v-model="editdata.email" required></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="6" md="6">
+                                            <v-select label="Vai trò" :items="items" v-model="editdata.role" required></v-select>
                                         </v-col>
                                     </v-row>
                                 </v-container>
@@ -62,7 +72,8 @@
                         </v-card>
                     </v-dialog>
                 </v-row>
-            </v-form>
+            </div>
+            
         </div>
     </div>
 </template>
@@ -71,7 +82,7 @@
 import axios from 'axios'
 import API_URL from '@/links/index.js'
 import router from '@/router/index.ts'
-import Home from '@/components/home/home.vue'
+import Courses from '../courses/courses.vue'
 const Login = {
     data(){
         return{
@@ -79,13 +90,14 @@ const Login = {
             showPassword:true,
             dialog: false,
             data: [],
-            editdata:{id:'', users:'', password:'', surname: '', name: '', email: '', active: 'true'},
+            items: ['Quản lí', 'Giảng viên', 'Sinh viên'],
+            editdata:{id:'', users:'', password:'', surname: '', name: '', email: '', role:'', active: 'true'},
             nameRules: [
-                v => !!v || 'Trường này bắt buộc',
+                v => !!v || 'This field is required',
             ],
             emailRules: [
-                v => !!v || 'Trường này bắt buộc',
-                v => /.+@.+/.test(v) || 'E-mail không hợp lệ',
+                v => !!v || 'This field is required',
+                v => /.+@.+/.test(v) || 'Invalid email',
             ],
         }
     },
@@ -97,7 +109,6 @@ const Login = {
             try{
                 const {data} =await axios.get(`${API_URL}`)
                 this.data = data.filter(item => item.active !==false )
-                console.log(this.data)
             }catch(error){
                 console.log(error)
             }
@@ -108,15 +119,15 @@ const Login = {
             const info = this.data.some(function(item){
                return item.users === users && item.password === password 
             })
-            const token = this.data.filter(item => item.users === users && item.password === password)[0].token
             if(info){
+                const token = this.data.filter(item => item.users === users && item.password === password)[0].token
                 localStorage.setItem('token', token)
-                setTimeout(() => {
-                    localStorage.removeItem('token');
-                }, 10000)
+                // setTimeout(() => {
+                //     localStorage.removeItem('token');
+                // }, 1000)
                 router.push({
-                    path: '/home',
-                    component: Home,
+                    path: '/courses',
+                    component: Courses,
                 })
             }else{
                 alert('Tài khoản hoặc mật khẩu không đúng')
