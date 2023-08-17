@@ -10,7 +10,7 @@ from sqlalchemy.orm import sessionmaker
 # engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 engine = create_engine(
-    f"postgresql://postgres:280200@localhost:5432/datalogin"
+    f"postgresql://postgres:280200@localhost:5432/studentmanager"
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
