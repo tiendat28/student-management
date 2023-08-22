@@ -74,7 +74,7 @@ class Subject(BaseModel):
         ).join(cls, text(f'COALESCE(Teacher.id, Student.id) = ANY(subject.student_ids)')
         ).group_by(User.id, User.first_name, User.last_name, cls.id, Teacher.id, Student.id
         ).filter(
-            User.id == id
+            User.id == id and cls.active == 'true'
         ).all()
 
         result_dict = {}

@@ -28,7 +28,7 @@ const Navigation = {
                 {icon: 'mdi-account-group',text: 'Lớp học', name: 'S_courses'},
                 {icon: 'mdi-bell-ring-outline',text: 'Thông báo'},
                 {icon: 'mdi-sword-cross',text: 'Bài Tập', name: 'S_assignment'},
-                {icon: 'mdi-file-alert-outline',text: 'File'},
+                {icon: 'mdi-file-alert-outline',text: 'File', name: 'S_file'},
                 {icon: 'mdi-book-edit-outline',text: 'Kết quả'},
                 {icon: 'mdi-flip-horizontal',text: 'Tự học'},
             ]
@@ -47,12 +47,6 @@ export default Navigation
 .hover :hover{
     color: #0f766e;
 }
-/* .theme--light.v-icon {
-    color:#475569
-}
-.theme--light.v-icon :hover {
-    color:red
-} */
 .v-list-item {
     padding: 0;
 }
