@@ -10,19 +10,21 @@ def read_answers():
     answers = Answer.get_list()
     return answers
 
+@router.get('/of_{user_id}')
+def read_answers(user_id: int):
+    answers = Answer.get_id(user_id = user_id)
+    return answers
 
 @router.post("/")
 def create_answer(create: List[AnswerCreate]):
     new_answer = Answer.create(create=create)
     return new_answer
 
-
 @router.delete('/{id}')
 def delete_answer(id: int):
     answer_model = Answer()
     deleted_answer = answer_model.delete(id=id)
     return deleted_answer
-
 
 @router.put('/{id}')
 def update_answer(id: int, update: AnswerUpdate):

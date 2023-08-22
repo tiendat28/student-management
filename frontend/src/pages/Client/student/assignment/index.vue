@@ -31,7 +31,7 @@
                 <div class="h-[230px] border-gray-300 border-2 rounded-lg">
                     <div class="flex justify-between px-8 pt-8">
                         <span class="text-xl">{{ index + 1 }}. {{ item.q_text }}</span>
-                        <span>1 điểm</span>
+                        <span>{{item.score}} điểm</span>
                     </div>
                     <div class="px-8">
                         <v-radio-group v-model="item.option">
@@ -45,9 +45,6 @@
             </div>
             <div class="py-6 px-8">
                 <v-btn @click="submit()" style="color: white;" color="#0d9488">Submit</v-btn>
-                <v-snackbar v-model="snackbar" :color="snackbarColor" height="40" elevation="10" top right timeout="2000">
-                    {{ snackbarText }}
-                </v-snackbar>
             </div>
         </div>
     </div>
@@ -107,13 +104,14 @@ import axios from 'axios'
 import jwtDecode from 'jwt-decode'
 import API_URL_QUESTIONS from '@/links/questions.js'
 import API_URL_ANSWER from '@/links/answer.js'
+import router from '@/router/index.ts'
 const Assignment = {
     data() {
         return {
             upcoming: true,
             expire: false,
             done: false,
-            score: true,
+            score: false,
             data: [],
             items: [
                 {'date': '4 Tháng 8', 'day': 'Thứ sáu', 'image':'https://ungdung.mobi/wp-content/uploads/2022/07/autocad.png', 'title': 'THI CUỐI KỲ - Kíp 4, 15h00 Thứ 6 ngày 04/08/23', 'sent': '12h00', 'class': 'Autocad'},
@@ -124,10 +122,6 @@ const Assignment = {
                 {'date': '9 Tháng 9', 'day': '2022', 'image':'https://crisp.chat/static/blog/content/images/2022/05/How-to-Migrate-a-large-project-from-Vue-2-to-Vue-3.jpg', 'title': 'Bài kiểm tra', 'sent': '12h00', 'class': 'VueJS'},
             ],
             questions: [],
-            answer: [],
-            snackbar: false,
-            snackbarText: '',
-            snackbarColor: 'success'
         }
     },
     methods: {
@@ -136,7 +130,6 @@ const Assignment = {
             try{
                 const decodedToken = jwtDecode(token)
                 this.data = decodedToken
-                console.log(this.data)
             }catch(error){
                 console.log(error)
             }
@@ -154,14 +147,6 @@ const Assignment = {
                 console.log(error)
             }
         },
-        async getAnswer(){
-            try{
-                const {data} =await axios.get(`${API_URL_ANSWER}`)
-                this.answer = data.filter(item => item.active !==false)  
-            }catch(error){
-                console.log(error)
-            }
-        },
         submit(){
             const user_id = this.data.id
             const answer = this.questions.map(item => {
@@ -172,17 +157,25 @@ const Assignment = {
                     is_correct: null 
                 }
             })
-            console.log(answer)
-            axios.post(API_URL_ANSWER, answer)
-            .then(response => {
-                this.snackbarText = 'Submit success!'
-                this.snackbar = true
-                // alert('Submit thành công')
-                console.log(response)
-            })
-            .catch(error => {
-                console.error(error)
-            })
+            let select_answer = true
+            for (let i = 0; i < answer.length; i++) {
+                if (answer[i].select_answer === undefined) {
+                    select_answer = false
+                    break
+                }
+            }
+            if(!select_answer){
+                alert('Đáp án không được để trống')
+            } else {
+                axios.post(API_URL_ANSWER, answer)
+                .then(response => {
+                    router.push('/S_home/assignment_done')
+                    console.log(response)
+                })
+                .catch(error => {
+                    console.error(error)
+                })
+            }
         },
         Upcoming(){
             this.upcoming = true
@@ -202,7 +195,6 @@ const Assignment = {
     },
     mounted(){
         this.getQuestions()
-        this.getAnswer()
         this.getAccount()
     }
 }

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DATE
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 from models.base import BaseModel
 
@@ -11,8 +11,8 @@ class Question(BaseModel):
     option3 = Column(String)
     option4 = Column(String)
     correct_answer = Column(String)
-    date_from = Column(DATE)
-    date_to = Column(DATE)
+    date_from = Column(String)
+    date_to = Column(String)
     score = Column(Integer)
 
     answers = relationship("Answer", back_populates="questions")

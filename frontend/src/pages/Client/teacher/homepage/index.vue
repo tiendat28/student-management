@@ -1,7 +1,7 @@
 <template>
     <div class="flex w-full">
       <div class="bg-slate-200 w-[30%] h-[calc(100vh-60px)]">
-          <div class="h-[90px] flex justify-between items-center px-6 border-b-2 border-[#cbd5e1]">
+          <div class="h-[80px] flex justify-between items-center px-6 border-b-2 border-[#cbd5e1]">
               <div class="text-2xl font-bold">Thông tin quan trọng</div>
               <div>
                   <v-icon> mdi-compass-rose</v-icon>
@@ -108,7 +108,7 @@
           </div>
       </div>
       <div class="w-full h-[calc(100vh-60px)]">
-          <div class="h-[90px] flex justify-between items-center px-6 border-b-2 border-[#cbd5e1]">
+          <div class="h-[80px] flex justify-between items-center px-6 border-b-2 border-[#cbd5e1]">
             <div class="flex justify-start items-center h-[120px] pl-6">
                   <div>
                     <v-icon color="green" :size="50">mdi-bag-personal-outline</v-icon>

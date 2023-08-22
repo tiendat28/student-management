@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from datetime import datetime
 
 class QuestionBase(BaseModel): 
     q_text: str
@@ -8,8 +7,8 @@ class QuestionBase(BaseModel):
     option3: str
     option4: str
     correct_answer: str
-    date_from: datetime = None
-    date_to: datetime = None
+    date_from: str = None
+    date_to: str = None
     score: int = None
 class QuestionCreate(QuestionBase):
     pass

@@ -23,54 +23,7 @@
                         <h1 class="font-bold text-3xl">Ngân hàng đề</h1>
                     </div>
                     <div>
-                        <v-dialog v-model="dialog" max-width="500px">
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-btn color="#0f766e" dark v-bind="attrs" v-on="on"> + Câu hỏi</v-btn>
-                            </template>
-                            <v-card>
-                                <v-card-title>
-                                    <span class="text-h5">Câu hỏi</span>
-                                </v-card-title>
-                                <v-card-text>
-                                    <v-container>
-                                        <v-row>
-                                            <v-col cols="12" sm="6">
-                                                <v-text-field v-model="addQuestions.q_text" label="Câu hỏi" required></v-text-field>
-                                            </v-col>
-                                            <v-col cols="12" sm="6">
-                                                <v-text-field v-model="addQuestions.correct_answer" label="Đáp án" required></v-text-field>
-                                            </v-col>
-                                            <v-col cols="12" sm="6">
-                                                <v-text-field v-model="addQuestions.option1" label="Lựa chọn 1" required></v-text-field>
-                                            </v-col>
-                                            <v-col cols="12" sm="6">
-                                                <v-text-field v-model="addQuestions.option2" label="Lựa chọn 2" required></v-text-field>
-                                            </v-col>
-                                            <v-col cols="12" sm="6">
-                                                <v-text-field v-model="addQuestions.option3" label="Lựa chọn 3" required></v-text-field>
-                                            </v-col>
-                                            <v-col cols="12" sm="6">
-                                                <v-text-field v-model="addQuestions.option4" label="Lựa chọn 4" required></v-text-field>
-                                            </v-col>                
-                                            <v-col cols="12" sm="6">
-                                                <v-text-field v-model="addQuestions.date_from" label="Date from" required></v-text-field>
-                                            </v-col>
-                                            <v-col cols="12" sm="6">
-                                                <v-text-field v-model="addQuestions.date_to" label="Date to" required></v-text-field>
-                                            </v-col>
-                                            <v-col cols="12" sm="12">
-                                                <v-text-field v-model="addQuestions.score" label="Điểm" required></v-text-field>
-                                            </v-col>
-                                        </v-row>
-                                    </v-container>
-                                </v-card-text>
-                                <v-card-actions>
-                                    <v-spacer></v-spacer>
-                                    <v-btn color="red darken-1" text @click="dialog = false">Cancel</v-btn>
-                                    <v-btn color="green darken-1" text @click="addQuestion()">Save</v-btn>
-                                </v-card-actions>
-                            </v-card>
-                        </v-dialog>
+                        <v-btn color="#0f766e" dark @click="Add()"> + Câu hỏi</v-btn>
                     </div>
                 </div>
                 <div class="relative overflow-x-hidden rounded-lg shadow-sm table-reponsive">
@@ -109,17 +62,6 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- <v-dialog v-model="dialogDelete" max-width="350px">
-                    <v-card>
-                        <v-card-title class="text-sm">Are you sure you want to delete?</v-card-title>
-                        <v-card-actions>
-                            <v-spacer></v-spacer>
-                                <v-btn color="red darken-1" text @click="dialogDelete = false">Cancel</v-btn>
-                                <v-btn color="green darken-1" text @click="deleteItemConfirm()">OK</v-btn>
-                            <v-spacer></v-spacer>
-                        </v-card-actions>
-                    </v-card>
-                </v-dialog> -->
             </div>
         </div>
         <div v-show="expire" class="relative top-0 left-0 table-reponsive overflow-x-hidden w-full h-full">
@@ -170,6 +112,60 @@
                 </div>
             </div>
         </div>
+        <div v-show="question" class="bg-gray-200 w-full h-full">
+            <div class="px-8 pt-8 pb-4">
+                <span class="font-bold text-3xl"><b class="text-teal-400 hover:cursor-pointer" @click="Upcoming()">Ngân hàng đề / </b> Câu hỏi</span>
+            </div>
+            <div class="px-[500px]">
+                <div class="p-8 bg-white rounded-lg">
+                    <form class="relative overflow-x-hidden table-reponsive1 ">
+                        <div class="mb-4">
+                            <label class="text-lg">Câu hỏi</label>
+                            <input v-model="addQuestions.q_text" type="text" placeholder="Nhập câu hỏi">
+                        </div>
+                        <div class="mb-4">
+                            <label class="text-lg">Lựa chọn 1</label>
+                            <input v-model="addQuestions.option1" type="text" placeholder="Nhập lựa chọn 1">
+                        </div>
+                        <div class="mb-4">
+                            <label class="text-lg">Lựa chọn 2</label>
+                            <input v-model="addQuestions.option2" type="text" placeholder="Nhập lựa chọn 2">
+                        </div>
+                        <div class="mb-4">
+                            <label class="text-lg">Lựa chọn 3</label>
+                            <input v-model="addQuestions.option3" type="text" placeholder="Nhập lựa chọn 3">
+                        </div>
+                        <div class="mb-4">
+                            <label class="text-lg">Lựa chọn 4</label>
+                            <input v-model="addQuestions.option4" type="text" placeholder="Nhập lựa chọn 4">
+                        </div>
+                        <div class="mb-4">
+                            <label class="text-lg">Đáp án</label>
+                            <input v-model="addQuestions.correct_answer" type="text" placeholder="Nhập đáp án">
+                        </div>
+                        <div class="mb-4">
+                            <label class="text-lg">Thời gian bắt đầu</label>
+                            <input v-model="addQuestions.date_from" type="date">
+                        </div>
+                        <div class="mb-4">
+                            <label class="text-lg">Thời gian kết thúc</label>
+                            <input v-model="addQuestions.date_to" type="date">
+                        </div>
+                        <div class="mb-4">
+                            <label class="text-lg">Điểm</label>
+                            <input v-model="addQuestions.score" type="text" placeholder="Nhập số điểm">
+                        </div>
+                        <div class="mb-4">
+                            <label  class="text-lg">Mô tả</label>
+                         
+                        </div>
+                        <div class="w-full flex justify-end">
+                            <v-btn color="#0f766e" dark @click="Save()"> Lưu lại</v-btn>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -181,11 +177,10 @@ import API_URL_ANSWER from '@/links/answer.js'
 const Assignment = {
     data() {
         return {
-            dialog: false,
-            dialogDelete: false,
             upcoming: true,
             expire: false,
             done: false,
+            question: false, 
             data: [],
             items: [
                 {'date': '4 Tháng 8', 'day': 'Thứ sáu', 'image':'https://ungdung.mobi/wp-content/uploads/2022/07/autocad.png', 'title': 'THI CUỐI KỲ - Kíp 4, 15h00 Thứ 6 ngày 04/08/23', 'sent': '12h00', 'class': 'Autocad'},
@@ -197,7 +192,8 @@ const Assignment = {
             ],
             questions: [],
             addQuestions: {q_text: '', option1: '', option2: '', option3: '', option4: '', correct_answer: '', date_from: '', date_to: '', score: '', active: 'true'},
-            answer: [],
+            default: {q_text: null, option1: null, option2: null, option3: null, option4: null, correct_answer: null, date_from: null, date_to: null, score: null, active: 'true'},
+            answer: []
         }
     },
     methods: {
@@ -231,22 +227,19 @@ const Assignment = {
                 console.log(error)
             }
         },
-        addQuestion(){
+        Save(){
             axios.post(`${API_URL_QUESTIONS}`, this.addQuestions)
             .then(response => {
-                this.dialog = false
+                this.upcoming = true
                 this.getQuestions()
+                this.addQuestions = this.default
                 console.log(response)
             })
             .catch(error => {
             })
         },
         handleDelete(item){
-            this.id = item
-            this.dialogDelete = true
-        },
-        deleteItemConfirm(){
-            axios.delete(`${API_URL_QUESTIONS}${this.id}`)
+            axios.delete(`${API_URL_QUESTIONS}${item}`)
             .then(response => {
                 this.dialogDelete = false
                 this.getQuestions()
@@ -269,7 +262,13 @@ const Assignment = {
             this.upcoming = false
             this.expire = false
             this.done = true
-        }
+        },
+        Add(){
+            this.upcoming = false
+            this.expire = false
+            this.done = false
+            this.question = true
+        },
     },
     mounted(){
         this.getQuestions()
@@ -283,5 +282,18 @@ export default Assignment
 <style scoped>
 .table-reponsive {
     max-height: calc(100vh - 150px);
+}
+.table-reponsive1 {
+    max-height: calc(100vh - 320px);
+}
+input {
+  width: 100%;
+  padding: 10px; 
+  border: 1px solid #cbd5e1; 
+  border-radius: 5px; 
+  font-size: 16px;
+}
+input:focus {
+    border: 2px solid green !important;
 }
 </style>

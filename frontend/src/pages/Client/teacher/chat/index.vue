@@ -1,7 +1,7 @@
 <template>
     <div class="flex w-full">
       <div class="bg-slate-200 w-[30%] h-full" style="box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.4)">
-          <div class="h-[90px] flex justify-between items-center px-6 border-b-2 border-[#cbd5e1]">
+          <div class="h-[80px] flex justify-between items-center px-6 border-b-2 border-[#cbd5e1]">
               <div class="text-2xl font-bold">Trò chuyện</div>
               <div>
                   <v-icon>mdi-cast</v-icon>
@@ -45,7 +45,7 @@
           </div>
       </div>
       <div class="bg-gray-100 w-full h-full">
-          <div class="h-[90px] flex justify-between items-center px-8 border-b-2 border-[#cbd5e1]">
+          <div class="h-[80px] flex justify-between items-center px-8 border-b-2 border-[#cbd5e1]">
               <div class="flex justify-start items-center h-[60px] hover:bg-white rounded-lg">
                   <div>
                       <v-img class="w-[45px] h-[45px] rounded-full" :src="require('@/assets/nam.jpg')"></v-img>

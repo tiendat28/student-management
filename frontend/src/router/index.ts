@@ -56,6 +56,16 @@ const routes: Array<RouteConfig> = [
         component: () => import('@/pages/Client/student/assignment/index.vue'),
       },
       {
+        path: '/S_home/file',
+        name: 'S_file',
+        component: () => import('@/pages/Client/student/file/index.vue'),
+      },
+      {
+        path: '/S_home/assignment_result',
+        name: 'S_assignment_result',
+        component: () => import('@/pages/Client/student/assignment/result.vue'),
+      },
+      {
         path: '/S_home/courses/:id/homepage',
         name: 'S_course_homepage',
         component: () => import('@/pages/Client/student/course_detail/index.vue'),
@@ -100,6 +110,11 @@ const routes: Array<RouteConfig> = [
         component: () => import('@/pages/Client/teacher/assignment/index.vue'),
       },
       {
+        path: '/T_home/file',
+        name: 'T_file',
+        component: () => import('@/pages/Client/teacher/file/index.vue'),
+      },
+      {
         path: '/T_home/courses/:id/homepage',
         name: 'T_course_homepage',
         component: () => import('@/pages/Client/teacher/course_detail/index.vue'),
@@ -117,7 +132,12 @@ const routes: Array<RouteConfig> = [
         ]
       }
     ]
-  }
+  },
+  {
+    path: '/S_home/assignment_done',
+    name: 'S_assignment_done',
+    component: () => import('@/pages/Client/student/assignment/done.vue'),
+  },
 ]
 
 const router = new VueRouter({

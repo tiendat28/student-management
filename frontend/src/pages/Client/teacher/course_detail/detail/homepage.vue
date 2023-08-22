@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="h-[90px] flex justify-start items-center px-8 border-b-2 border-[#cbd5e1]">
+        <div class="h-[80px] flex justify-start items-center px-8 border-b-2 border-[#cbd5e1]">
             <div class="flex">
                 <v-icon color="#0f766e" class="pr-3" :size="50">mdi-home-heart</v-icon>
                 <span class="font-bold text-2xl flex justify-start items-center">Trang chủ</span>

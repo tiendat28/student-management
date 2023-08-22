@@ -4,4 +4,5 @@ VALUES
     ('They are all ________ ready for the party.', 'getting', 'going', 'doing', 'putting', 'getting'),
     ('When do you go ________ bed?', 'to', 'to the', 'in', 'in the', 'to'),
     ('London is famous for _____ red buses.', 'it`s', 'its', 'it', 'it is', 'its'),
-    ('Is there _____ milk in the fridge?', 'a lot', 'many', 'much', 'some', 'some');
+    ('Is there _____ milk in the fridge?', 'a lot', 'many', 'much', 'some', 'some'),
+    ('Do you love me?', 'a lot', 'many', 'much', 'forever', 'forever');
