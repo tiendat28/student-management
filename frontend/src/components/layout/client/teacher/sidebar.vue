@@ -26,15 +26,11 @@ const Navigation = {
                 {icon: 'mdi-file-alert-outline',text: 'File', name: 'T_file'},
                 {icon: 'mdi-book-edit-outline',text: 'Kết quả'},
                 {icon: 'mdi-flip-horizontal',text: 'Tự học'},
-            ],
-            a: null
+            ]
         }
     },
     methods: {
-        setActiveItem(index) {
-            this.a = index
-            localStorage.setItem('activeItem', index)
-        }
+
     }
 } 
 export default Navigation
@@ -44,14 +40,9 @@ export default Navigation
     color:#475569
 }
 .hover :hover{
-    color: #0f766e;
+    color: #34d399;
+    font-weight: 600 ;
 }
-/* .theme--light.v-icon {
-    color:#475569
-}
-.theme--light.v-icon :hover {
-    color:red
-} */
 .v-list-item {
     padding: 0;
 }

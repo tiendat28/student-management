@@ -45,7 +45,8 @@ export default Navigation
     color:#475569
 }
 .hover :hover{
-    color: #0f766e;
+    color: #34d399;
+    font-weight: 600 ;
 }
 .v-list-item {
     padding: 0;

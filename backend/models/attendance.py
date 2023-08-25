@@ -1,5 +1,9 @@
-from sqlalchemy import Column, Integer, ForeignKey, DATE,String
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, ForeignKey, DATE,String, select
+from sqlalchemy.orm import relationship, aliased
+from sqlalchemy.sql import func
+from models.subject import Subject
+from models.student import Student
+from models.user import User
 from models.base import BaseModel
 
 class Attendance(BaseModel):
@@ -14,6 +18,7 @@ class Attendance(BaseModel):
     teacher = relationship("Teacher", back_populates="attendance")
     student = relationship("Student", back_populates="attendance")
     subject = relationship("Subject", back_populates="attendance")
+
 
     @classmethod
     def get_list(cls):

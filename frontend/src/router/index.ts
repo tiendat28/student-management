@@ -110,6 +110,11 @@ const routes: Array<RouteConfig> = [
         component: () => import('@/pages/Client/teacher/assignment/index.vue'),
       },
       {
+        path: '/T_home/assignment/:id',
+        name: 'T_assignment_edit',
+        component: () => import('@/pages/Client/teacher/assignment/id/index.vue'),
+      },
+      {
         path: '/T_home/file',
         name: 'T_file',
         component: () => import('@/pages/Client/teacher/file/index.vue'),

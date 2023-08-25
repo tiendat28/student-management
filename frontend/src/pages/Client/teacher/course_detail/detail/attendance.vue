@@ -114,8 +114,6 @@ const Attendance ={
             length: '',
             attendanceData : [],
             status: ['Đi học', 'Nghỉ có phép', 'Nghỉ không phép'],
-            max_count: { "Đi học": 0, "Nghỉ có phép": 0, "Nghỉ không phép": 0},
-            max_student_name: {"Đi học": "", "Nghỉ có phép": "", "Nghỉ không phép": ""}
         }
     },
     methods:{
@@ -164,42 +162,6 @@ const Attendance ={
                 .catch(error => {
                     console.error(error)
                 })
-        },
-        Count(){
-            const data = this.attendanceData
-            const statusCounts = {
-                "Đi học": 0,
-                "Nghỉ có phép": 0,
-                "Nghỉ không phép": 0,
-            }
-            const studentStatus = {}
-            data.forEach(date => {
-                date.student.forEach(item => {
-                    const status = item.status;
-                    const studentId = item.student_id
-                    statusCounts[status]++
-                    if (!studentStatus[studentId]) {
-                        studentStatus[studentId] = {}
-                    }
-                    if (!studentStatus[studentId][status]) {
-                        studentStatus[studentId][status] = 0
-                    }
-                    studentStatus[studentId][status]++
-                })
-            })
-            for (const studentId in studentStatus) {
-                for (const status in studentStatus[studentId]) {
-                    if (studentStatus[studentId][status] > this.max_count[status]) {
-                        this.max_count[status] = studentStatus[studentId][status]
-                        this.max_student_name[status] = studentId
-                    }
-                }
-            }
-            for (const status in this.max_student_name) {
-                console.log(
-                    `${status}: Student_id ${this.max_student_name[status]}`
-                )
-            }
         }
     },
     mounted(){

@@ -7,7 +7,7 @@
             <div>
                 <v-dialog v-model="dialog" persistent max-width="500px">
                 <template v-slot:activator="{ on, attrs }">
-                    <v-btn color="#0f766e" dark v-bind="attrs" v-on="on"> + Add Class</v-btn>
+                    <v-btn color="#0f766e" dark v-bind="attrs" v-on="on"> + Class</v-btn>
                 </template>
                     <v-card>
                         <v-card-title>
@@ -45,7 +45,7 @@
         </div>
         <div class="relative overflow-auto rounded-lg shadow-sm table-reponsive">
             <table class="w-full text-sm text-left text-gray-500 whitespace-nowrap">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <thead class="text-xs sticky top-0 z-50 text-gray-700 uppercase bg-gray-50">
                     <tr>
                         <th scope="col" class="px-6 py-3">No</th>
                         <th scope="col" class="px-6 py-3">Class Name</th>

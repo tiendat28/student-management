@@ -23,12 +23,12 @@
                         <h1 class="font-bold text-3xl">Ngân hàng đề</h1>
                     </div>
                     <div>
-                        <v-btn color="#0f766e" dark @click="Add()"> + Câu hỏi</v-btn>
+                        <v-btn color="#0f766e" dark @click="CreateOrUpdate(0)"> + Câu hỏi</v-btn>
                     </div>
                 </div>
                 <div class="relative overflow-x-hidden rounded-lg shadow-sm table-reponsive">
                     <table class="w-full text-sm text-left text-gray-500 whitespace-nowrap">
-                        <thead class="text-xs text-gray-700 bg-gray-50">
+                        <thead class="text-base text-teal-700 bg-gray-300">
                             <tr>
                                 <th scope="col" class="px-6 py-3">STT</th>
                                 <th scope="col" class="px-6 py-3">Câu hỏi</th>
@@ -44,7 +44,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(item, index) in questions" :key="item.id" class="bg-white border-b ">
+                            <tr v-for="(item, index) in questions" :key="item.id" class="bg-white border-b-2 text-base ">
                                 <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">{{ index + 1 }}</td>
                                 <td class="px-6 py-4">{{ item.q_text }}</td>
                                 <td class="px-6 py-4">{{ item.option1 }}</td>
@@ -56,6 +56,7 @@
                                 <td class="px-6 py-4">{{ item.date_to }}</td>
                                 <td class="px-6 py-4">{{ item.score }}</td>
                                 <td class="pr-8 py-4 flex justify-end">
+                                    <v-icon height="40px" color="green" @click="CreateOrUpdate(item.id)"> mdi-pencil</v-icon>
                                     <v-icon height="40px" color="red" @click="handleDelete(item.id)"> mdi-delete</v-icon>
                                 </td>
                             </tr>
@@ -64,24 +65,34 @@
                 </div>
             </div>
         </div>
-        <div v-show="expire" class="relative top-0 left-0 table-reponsive overflow-x-hidden w-full h-full">
-            <div class="p-8" v-for="item in items" :key="item.title">
-                <span class="text-xl"><b>{{ item.date }}</b> {{ item.day }}</span>
-                <div class="pt-6">
-                    <div class="flex justify-between border-2 border-teal-300 rounded-lg p-6">
-                        <div class="flex">
-                            <div class="flex items-center">
-                                <v-img class="w-[50px] h-[50px]" :src = 'item.image'></v-img>
-                            </div>
-                            <div class="">
-                                <div class="px-4 flex flex-col">
-                                    <span class="text-xl">{{ item.title }}</span>
-                                    <span class="py-2 text-red-500">Đã hết hạn: {{ item.sent }} </span>
-                                    <span>Lớp: {{ item.class }} </span>
-                                </div>
-                            </div>
-                        </div>
+        <div v-show="expire" class="bg-gray-200 w-full h-full">
+            <div class="p-8">
+                <div class="flex text-2xl font-semibold mb-10 justify-between items-center">
+                    <div>
+                        <h1 class="font-medium text-3xl">Danh sách học sinh đã nộp bài</h1>
                     </div>
+                </div>
+                <div class="relative overflow-x-hidden rounded-lg shadow-sm table-reponsive">
+                    <table class="w-full text-sm text-left text-gray-500 whitespace-nowrap">
+                        <thead class="text-base text-teal-700 bg-gray-300">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">STT</th>
+                                <th scope="col" class="px-6 py-3">Họ Và Tên</th>
+                                <th scope="col" class="px-6 py-3">Điểm</th>
+                                <th scope="col" class="px-6 py-3">Thời gian nộp</th>
+                                <th scope="col" class="px-6 py-3">Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item, index) in answer" :key="item.id" class="bg-white border-b-2 text-base">
+                                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">{{ index + 1 }}</td>
+                                <td class="px-6 py-4">{{ item.user.fullname }}</td>
+                                <td class="px-6 py-4 font-medium text-lg text-red-500">{{ item.user.score_total }}</td>
+                                <td class="px-6 py-4">14:50:45</td>
+                                <td class="px-6 py-4">Đã nộp</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -112,65 +123,12 @@
                 </div>
             </div>
         </div>
-        <div v-show="question" class="bg-gray-200 w-full h-full">
-            <div class="px-8 pt-8 pb-4">
-                <span class="font-bold text-3xl"><b class="text-teal-400 hover:cursor-pointer" @click="Upcoming()">Ngân hàng đề / </b> Câu hỏi</span>
-            </div>
-            <div class="px-[500px]">
-                <div class="p-8 bg-white rounded-lg">
-                    <form class="relative overflow-x-hidden table-reponsive1 ">
-                        <div class="mb-4">
-                            <label class="text-lg">Câu hỏi</label>
-                            <input v-model="addQuestions.q_text" type="text" placeholder="Nhập câu hỏi">
-                        </div>
-                        <div class="mb-4">
-                            <label class="text-lg">Lựa chọn 1</label>
-                            <input v-model="addQuestions.option1" type="text" placeholder="Nhập lựa chọn 1">
-                        </div>
-                        <div class="mb-4">
-                            <label class="text-lg">Lựa chọn 2</label>
-                            <input v-model="addQuestions.option2" type="text" placeholder="Nhập lựa chọn 2">
-                        </div>
-                        <div class="mb-4">
-                            <label class="text-lg">Lựa chọn 3</label>
-                            <input v-model="addQuestions.option3" type="text" placeholder="Nhập lựa chọn 3">
-                        </div>
-                        <div class="mb-4">
-                            <label class="text-lg">Lựa chọn 4</label>
-                            <input v-model="addQuestions.option4" type="text" placeholder="Nhập lựa chọn 4">
-                        </div>
-                        <div class="mb-4">
-                            <label class="text-lg">Đáp án</label>
-                            <input v-model="addQuestions.correct_answer" type="text" placeholder="Nhập đáp án">
-                        </div>
-                        <div class="mb-4">
-                            <label class="text-lg">Thời gian bắt đầu</label>
-                            <input v-model="addQuestions.date_from" type="date">
-                        </div>
-                        <div class="mb-4">
-                            <label class="text-lg">Thời gian kết thúc</label>
-                            <input v-model="addQuestions.date_to" type="date">
-                        </div>
-                        <div class="mb-4">
-                            <label class="text-lg">Điểm</label>
-                            <input v-model="addQuestions.score" type="text" placeholder="Nhập số điểm">
-                        </div>
-                        <div class="mb-4">
-                            <label  class="text-lg">Mô tả</label>
-                         
-                        </div>
-                        <div class="w-full flex justify-end">
-                            <v-btn color="#0f766e" dark @click="Save()"> Lưu lại</v-btn>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
+import router from '@/router/index.ts'
 import jwtDecode from 'jwt-decode'
 import API_URL_QUESTIONS from '@/links/questions.js'
 import API_URL_ANSWER from '@/links/answer.js'
@@ -180,7 +138,6 @@ const Assignment = {
             upcoming: true,
             expire: false,
             done: false,
-            question: false, 
             data: [],
             items: [
                 {'date': '4 Tháng 8', 'day': 'Thứ sáu', 'image':'https://ungdung.mobi/wp-content/uploads/2022/07/autocad.png', 'title': 'THI CUỐI KỲ - Kíp 4, 15h00 Thứ 6 ngày 04/08/23', 'sent': '12h00', 'class': 'Autocad'},
@@ -191,8 +148,6 @@ const Assignment = {
                 {'date': '9 Tháng 9', 'day': '2022', 'image':'https://crisp.chat/static/blog/content/images/2022/05/How-to-Migrate-a-large-project-from-Vue-2-to-Vue-3.jpg', 'title': 'Bài kiểm tra', 'sent': '12h00', 'class': 'VueJS'},
             ],
             questions: [],
-            addQuestions: {q_text: '', option1: '', option2: '', option3: '', option4: '', correct_answer: '', date_from: '', date_to: '', score: '', active: 'true'},
-            default: {q_text: null, option1: null, option2: null, option3: null, option4: null, correct_answer: null, date_from: null, date_to: null, score: null, active: 'true'},
             answer: []
         }
     },
@@ -238,6 +193,15 @@ const Assignment = {
             .catch(error => {
             })
         },
+        CreateOrUpdate(id){
+            router.push({
+                name: 'T_assignment_edit',
+                params:{
+                    id: id
+                }
+            })
+        },
+        
         handleDelete(item){
             axios.delete(`${API_URL_QUESTIONS}${item}`)
             .then(response => {
@@ -262,19 +226,14 @@ const Assignment = {
             this.upcoming = false
             this.expire = false
             this.done = true
-        },
-        Add(){
-            this.upcoming = false
-            this.expire = false
-            this.done = false
-            this.question = true
-        },
+        }
     },
     mounted(){
         this.getQuestions()
         this.getAnswer()
         this.getAccount()
-    }
+    },
+
 }
 export default Assignment
 </script>

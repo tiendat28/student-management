@@ -18,6 +18,7 @@ class Student(BaseModel):
         data = super().get_list()
         datas = list(map(lambda x: {
             'id': x.id,
+            'user_id': x.user_id,
             'username': x.user.username,
             'first_name': x.user.first_name,
             'last_name': x.user.last_name,
