@@ -9,19 +9,21 @@ def read_questions():
     questions = Question.get_list()
     return questions
 
+@router.get('/{id}')
+def read_question(id: int):
+    questions = Question.get_one(id=id)
+    return questions
 
 @router.post("/")
 def create_question(create: QuestionCreate):
     new_question = Question.create(create=create)
     return new_question
 
-
 @router.delete('/{id}')
 def delete_question(id: int):
     question_model = Question()
     deleted_question = question_model.delete(id=id)
     return deleted_question
-
 
 @router.put('/{id}')
 def update_question(id: int, update: QuestionUpdate):

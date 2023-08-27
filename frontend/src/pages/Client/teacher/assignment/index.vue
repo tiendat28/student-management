@@ -51,7 +51,7 @@
                                 <td class="px-6 py-4">{{ item.option2 }}</td>
                                 <td class="px-6 py-4">{{ item.option3 }}</td>
                                 <td class="px-6 py-4">{{ item.option4 }}</td>
-                                <td class="px-6 py-4">{{ item.correct_answer }}</td>
+                                <td class="px-6 py-4 text-red-500">{{ item.correct_answer }}</td>
                                 <td class="px-6 py-4">{{ item.date_from }}</td>
                                 <td class="px-6 py-4">{{ item.date_to }}</td>
                                 <td class="px-6 py-4">{{ item.score }}</td>

@@ -83,7 +83,9 @@
                         <td class="px-6 py-4">{{ item.phone }}</td>
                         <td class="px-6 py-4">{{ item.email }}</td>
                         <td class="px-6 py-4">{{ item.sex }}</td>
-                        <td class="px-6 py-4">{{ item.role }}</td>
+                        <td v-if="item.role == 'Manager'" class="px-6 py-4 text-green-500">{{ item.role }}</td>
+                        <td v-if="item.role == 'Teacher'" class="px-6 py-4 text-yellow-500">{{ item.role }}</td>
+                        <td v-if="item.role == 'Student'" class="px-6 py-4 text-cyan-500">{{ item.role }}</td>
                         <td class="pr-8 py-4 flex justify-end">
                             <v-icon height="40px" color="green" class="mr-2" @click="editItem(item.id)"> mdi-pencil </v-icon>
                             <v-icon height="40px" color="red" @click=" deleteItem(item.id)"> mdi-delete</v-icon>

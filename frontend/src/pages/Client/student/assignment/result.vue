@@ -21,7 +21,7 @@
                                     <span class="text-xl font-semibold">Điểm</span>
                                 </div>
                                 <div v-for="item in answer" :key="item.id">
-                                    <span class="px-2"> {{ item.user.score_total }} / 6</span>
+                                    <span class="px-2"> {{ item.user.score_total }} / {{ item.questions.length }}</span>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +70,7 @@ const Result = {
                 {title: 'Thời gian thực hiện', text:'1h'},
             ],
             answer: [],
-            data: [],
+            data: []
         }
     },
     methods: {

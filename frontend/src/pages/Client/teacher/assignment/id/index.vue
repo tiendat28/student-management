@@ -8,43 +8,48 @@
                 <form class="relative overflow-x-hidden table-reponsive ">
                     <div class="mb-4">
                         <label class="text-lg">Câu hỏi</label>
-                        <input v-model="addQuestions.q_text" type="text" placeholder="Nhập câu hỏi">
+                        <input v-if="this.$route.params.id === 0" v-model="addQuestions.q_text" type="text" placeholder="Nhập câu hỏi">
+                        <input v-if="this.$route.params.id !== 0" v-model="question.q_text" type="text" placeholder="Nhập câu hỏi">
                     </div>
                     <div class="mb-4">
                         <label class="text-lg">Lựa chọn 1</label>
-                        <input v-model="addQuestions.option1" type="text" placeholder="Nhập lựa chọn 1">
+                        <input v-if="this.$route.params.id === 0" v-model="addQuestions.option1" type="text" placeholder="Nhập lựa chọn 1">
+                        <input v-if="this.$route.params.id !== 0" v-model="question.option1" type="text" placeholder="Nhập lựa chọn 1">
                     </div>
                     <div class="mb-4">
                         <label class="text-lg">Lựa chọn 2</label>
-                        <input v-model="addQuestions.option2" type="text" placeholder="Nhập lựa chọn 2">
+                        <input v-if="this.$route.params.id === 0" v-model="addQuestions.option2" type="text" placeholder="Nhập lựa chọn 2">
+                        <input v-if="this.$route.params.id !== 0" v-model="question.option2" type="text" placeholder="Nhập lựa chọn 2">
                     </div>
                     <div class="mb-4">
                         <label class="text-lg">Lựa chọn 3</label>
-                        <input v-model="addQuestions.option3" type="text" placeholder="Nhập lựa chọn 3">
+                        <input v-if="this.$route.params.id === 0"  v-model="addQuestions.option3" type="text" placeholder="Nhập lựa chọn 3">
+                        <input v-if="this.$route.params.id !== 0"  v-model="question.option3" type="text" placeholder="Nhập lựa chọn 3">
                     </div>
                     <div class="mb-4">
                         <label class="text-lg">Lựa chọn 4</label>
-                        <input v-model="addQuestions.option4" type="text" placeholder="Nhập lựa chọn 4">
+                        <input v-if="this.$route.params.id === 0" v-model="addQuestions.option4" type="text" placeholder="Nhập lựa chọn 4">
+                        <input v-if="this.$route.params.id !== 0" v-model="question.option4" type="text" placeholder="Nhập lựa chọn 4">
                     </div>
                     <div class="mb-4">
                         <label class="text-lg">Đáp án</label>
-                        <input v-model="addQuestions.correct_answer" type="text" placeholder="Nhập đáp án">
+                        <input v-if="this.$route.params.id === 0" v-model="addQuestions.correct_answer" type="text" placeholder="Nhập đáp án">
+                        <input v-if="this.$route.params.id !== 0" v-model="question.correct_answer" type="text" placeholder="Nhập đáp án">
                     </div>
                     <div class="mb-4">
                         <label class="text-lg">Thời gian bắt đầu</label>
-                        <input v-model="addQuestions.date_from" type="date">
+                        <input v-if="this.$route.params.id === 0" v-model="addQuestions.date_from" type="date">
+                        <input v-if="this.$route.params.id !== 0" v-model="question.date_from" type="date">
                     </div>
                     <div class="mb-4">
                         <label class="text-lg">Thời gian kết thúc</label>
-                        <input v-model="addQuestions.date_to" type="date">
+                        <input v-if="this.$route.params.id === 0" v-model="addQuestions.date_to" type="date">
+                        <input v-if="this.$route.params.id !== 0" v-model="question.date_to" type="date">
                     </div>
                     <div class="mb-4">
                         <label class="text-lg">Điểm</label>
-                        <input v-model="addQuestions.score" type="text" placeholder="Nhập số điểm">
-                    </div>
-                    <div class="mb-4">
-                        <label  class="text-lg">Mô tả</label>
-                        
+                        <input v-if="this.$route.params.id === 0" v-model="addQuestions.score" type="text" placeholder="Nhập số điểm">
+                        <input v-if="this.$route.params.id !== 0" v-model="question.score" type="text" placeholder="Nhập số điểm">
                     </div>
                     <div class="w-full flex justify-end">
                         <v-btn color="#0f766e" dark @click="Save()"> Lưu lại</v-btn>
@@ -57,6 +62,7 @@
 
 <script>
 import axios from 'axios'
+// import { VueEditor } from "vue2-editor"
 import router from '@/router/index.ts'
 import jwtDecode from 'jwt-decode'
 import API_URL_QUESTIONS from '@/links/questions.js'
@@ -64,6 +70,7 @@ const Assignment = {
     data() {
         return {
             data: [],
+            question: [],
             addQuestions: {q_text: '', option1: '', option2: '', option3: '', option4: '', correct_answer: '', date_from: '', date_to: '', score: '', active: 'true'},
             default: {q_text: null, option1: null, option2: null, option3: null, option4: null, correct_answer: null, date_from: null, date_to: null, score: null, active: 'true'},
         }
@@ -83,9 +90,18 @@ const Assignment = {
 
             }
         },
+        async getQuestion(){
+            try{
+                const {data} = await axios.get(`${API_URL_QUESTIONS}${this.$route.params.id}`)
+                this.question = data
+            }catch(error){
+                console.log(error)
+            }
+        },
         Save(){
             const isCreate = String(this.$route.params.id) === '0'
             const body = this.addQuestions
+            const bodyEdit = this.question
             Object.keys(body).forEach(key => {
                 body[key] = body[key] === '' ? null : body[key]
             })
@@ -100,7 +116,7 @@ const Assignment = {
                 .catch(error => {
                 })
             }else {
-                axios.put(`${API_URL_QUESTIONS}${this.$route.params.id}`, body)
+                axios.put(`${API_URL_QUESTIONS}${this.$route.params.id}`, bodyEdit)
                 .then(response => {
                     this.addQuestions = this.default
                     this.$router.push({ name: 'T_assignment' })
@@ -115,8 +131,10 @@ const Assignment = {
             router.push({ name: 'T_assignment' })
         }
     },
+    // components: { VueEditor },
     mounted(){
         this.getAccount()
+        this.getQuestion()
     }
 }
 export default Assignment

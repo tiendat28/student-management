@@ -10,7 +10,7 @@
                 </router-link>
             </div>
             <div class="flex">
-                <ul :class="showMenu ? 'flex' : 'hidden'" 
+                <ul 
                     class=" flex justify-center items-center space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0 cursor-pointer uppercase">
                     <a href="#about" class="font-bold hover:border-b-4 hover:border-[#06b6d4]">
                         <li>giới thiệu</li>

@@ -5,15 +5,15 @@
                 File
             </div>
             <div class="px-2">
-                <div @click="Home()" v-bind:class="{ 'bg-white font-semibold border-l-4 border-teal-600': home }" class="flex justify-start items-center rounded-md text-lg font-light px-1 h-[50px] hover:bg-white">
+                <div @click="Home()" v-bind:class="{ 'bg-white font-semibold border-l-4 border-teal-600': home }" class="flex justify-start items-center rounded-md text-lg font-light px-1 h-[50px] hover:bg-white hover:cursor-pointer">
                     <v-icon :size="30">mdi-home-outline</v-icon>
                     <span class="px-3">Trang chủ</span>
                 </div>
-                <div @click="File()" v-bind:class="{ 'bg-white font-semibold border-l-4 border-teal-600': file }" class="flex justify-start items-center rounded-md text-lg font-light px-3 h-[50px] hover:bg-white">
+                <div @click="File()" v-bind:class="{ 'bg-white font-semibold border-l-4 border-teal-600': file }" class="flex justify-start items-center rounded-md text-lg font-light px-3 h-[50px] hover:bg-white hover:cursor-pointer">
                     <v-icon :size="30">mdi-folder-file-outline</v-icon>
                     <span class="px-3">File của tôi</span>
                 </div>
-                <div @click="Share()" v-bind:class="{ 'bg-white font-semibold border-l-4 border-teal-600': share }" class="flex justify-start items-center rounded-md text-lg font-light px-3 h-[50px] hover:bg-white ">
+                <div @click="Share()" v-bind:class="{ 'bg-white font-semibold border-l-4 border-teal-600': share }" class="flex justify-start items-center rounded-md text-lg font-light px-3 h-[50px] hover:bg-white hover:cursor-pointer">
                     <v-icon :size="30">mdi-share-variant</v-icon>
                     <span class="px-3">Đã chia sẻ</span>
                 </div>

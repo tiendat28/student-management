@@ -2,11 +2,24 @@
     <div>
         <div class="flex w-full h-[calc(100vh-60px)]">
             <div class="bg-slate-100 w-[90px] h-full">
-                <div class="flex flex-col justify-between items-center py-0 hover">
-                    <router-link class="flex flex-col py-3" v-for="(item, index) in items" :key="index" :to="{ name: item.name, params: { name: item.name }}">
-                        <v-icon :size="30">{{ item.icon }}</v-icon>
-                        <span class="text-sm">{{ item.text }}</span>
-                    </router-link>
+                <div class="flex flex-col justify-between items-center py-3">
+                    <div class="w-full hover">
+                        <router-link 
+                            class="flex items-center flex-col py-4" 
+                            v-for="(item, index) in items" 
+                            :key="index" 
+                            :to="{ name: item.name, params: { name: item.name }}"
+                        >
+                            <v-icon :size="30">{{ item.icon }}</v-icon>
+                            <span class="text-sm">{{ item.text }}</span>
+                        </router-link>
+                    </div>
+                    <div class="hover w-full relative top-[170px]">
+                        <div class="flex items-center flex-col py-3">
+                            <v-icon :size="30">mdi-help-circle-outline</v-icon>
+                            <span class="text-sm">Trợ giúp</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -42,6 +55,7 @@ export default Navigation
 .hover :hover{
     color: #34d399;
     font-weight: 600 ;
+    background: white;
 }
 .v-list-item {
     padding: 0;

@@ -1,8 +1,8 @@
-INSERT INTO questions (q_text, option1, option2, option3, option4, correct_answer)
+INSERT INTO questions (q_text, option1, option2, option3, option4, correct_answer, score, date_from, date_to)
 VALUES
-    ('Who are all ________ people?', 'This', 'Those', 'Them', 'That', 'Those'),
-    ('They are all ________ ready for the party.', 'getting', 'going', 'doing', 'putting', 'getting'),
-    ('When do you go ________ bed?', 'to', 'to the', 'in', 'in the', 'to'),
-    ('London is famous for _____ red buses.', 'it`s', 'its', 'it', 'it is', 'its'),
-    ('Is there _____ milk in the fridge?', 'a lot', 'many', 'much', 'some', 'some'),
-    ('Do you love me?', 'a lot', 'many', 'much', 'forever', 'forever');
+    ('Who are all ________ people?', 'This', 'Those', 'Them', 'That', 'Those', 1, '2023-08-01', '2023-08-15'),
+    ('They are all ________ ready for the party.', 'Getting', 'Going', 'Doing', 'Putting', 'Getting', 1, '2023-08-01', '2023-08-15'),
+    ('When do you go ________ bed?', 'To', 'To the', 'In', 'In the', 'To', 1, '2023-08-01', '2023-08-15'),
+    ('London is famous for _____ red buses.', 'It`s', 'Its', 'It', 'It is', 'Its', 1, '2023-08-01', '2023-08-15'),
+    ('Is there _____ milk in the fridge?', 'A lot', 'Many', 'Much', 'Some', 'Some', 1, '2023-08-01', '2023-08-15'),
+    ('Do you love me?', 'A lot', 'Many', 'Much', 'Forever', 'Forever', 1, '2023-08-01', '2023-08-15');
