@@ -9,3 +9,4 @@ JOIN
 JOIN
     questions ON answers.q_id = questions.id;
 
+SELECT * FROM pg_log ORDER BY log_time DESC
