@@ -21,6 +21,7 @@ class Subject(BaseModel):
     teacher = relationship("Teacher", back_populates="subject")
     student = relationship("Student", back_populates="subject")
     attendance = relationship("Attendance", back_populates="subject")
+    todolist = relationship("Todolist", back_populates="subject")
   
     @classmethod
     def get_list(cls): 

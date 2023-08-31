@@ -12,6 +12,7 @@ class Student(BaseModel):
     user = relationship("User", back_populates="student")
     subject = relationship("Subject", back_populates="student")
     attendance = relationship("Attendance", back_populates="student")
+    todolist = relationship("Todolist", back_populates="student")
 
     @classmethod
     def get_list(cls):

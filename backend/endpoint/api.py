@@ -1,6 +1,6 @@
 
 from fastapi import APIRouter
-from endpoint import teacher, student, subject, attendance, user, token, questions, answer
+from endpoint import teacher, student, subject, attendance, user, token, questions, answer, todolist
 
 api_router = APIRouter()
 
@@ -51,4 +51,10 @@ api_router.include_router(
     answer.router,
     prefix='/answer',
     tags=['answer']
+)
+
+api_router.include_router(
+    todolist.router,
+    prefix='/todolist',
+    tags=['todolist']
 )

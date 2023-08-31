@@ -51,6 +51,16 @@ const routes: Array<RouteConfig> = [
         component: () => import('@/pages/Client/student/chat/index.vue'),
       },
       {
+        path: '/S_home/selt_learn',
+        name: 'S_learn',
+        component: () => import('@/pages/Client/student/learn/index.vue'),
+      },
+      {
+        path: '/S_home/selt_learn/:id',
+        name: 'S_selt_learn_edit',
+        component: () => import('@/pages/Client/student/learn/id/index.vue'),
+      },
+      {
         path: '/S_home/assignment',
         name: 'S_assignment',
         component: () => import('@/pages/Client/student/assignment/index.vue'),

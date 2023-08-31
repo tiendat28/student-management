@@ -23,4 +23,18 @@ CREATE TABLE answers (
     is_correct BOOLEAN,
     active bool DEFAULT true,
     CONSTRAINT pkey_answers PRIMARY KEY (id)
-)
+);
+
+drop table IF exists todolist cascade;
+CREATE TABLE todolist (
+    id bigserial,
+    subject_id INTEGER,
+    teacher_id INTEGER,
+    student_id INTEGER,
+    name VARCHAR,
+    time VARCHAR,
+    level VARCHAR,
+    status BOOLEAN,
+    active bool DEFAULT true,
+    CONSTRAINT pkey_todolist PRIMARY KEY (id)
+);

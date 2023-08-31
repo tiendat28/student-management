@@ -38,7 +38,7 @@ const Navigation = {
                 {icon: 'mdi-sword-cross',text: 'Bài Tập', name: 'S_assignment'},
                 {icon: 'mdi-file-alert-outline',text: 'File', name: 'S_file'},
                 {icon: 'mdi-book-edit-outline',text: 'Kết quả'},
-                {icon: 'mdi-flip-horizontal',text: 'Tự học'},
+                {icon: 'mdi-flip-horizontal',text: 'Tự học', name: 'S_learn'},
             ]
         }
     },
