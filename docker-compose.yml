@@ -6,7 +6,7 @@ services:
     container_name: my_web_frontend
     build:
       context: ./frontend
-      dockerfile: Dockerfilev
+      dockerfile: Dockerfile
     volumes:
       - './frontend:/app/frontend'
       - './frontend/node_modules:/app/frontend/node_modules'
