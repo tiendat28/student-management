@@ -31,7 +31,7 @@ services:
 
   db:
     container_name: my_web_db
-    image: postgres:11
+    image: postgres:14
     ports:
       - "1002:5432"
     environment:
