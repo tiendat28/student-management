@@ -11,7 +11,7 @@ services:
       - './frontend:/app/frontend'
       - './frontend/node_modules:/app/frontend/node_modules'
     ports:
-      - '80:3000'
+      - '2000:3000'
       - '24678:24678'
     command: ["npm", "run", "serve", "--", "--port", "3000"]
 
@@ -23,7 +23,7 @@ services:
     volumes:
       - ./backend:/app/backend
     ports:
-      - "1001:1001"
+      - "2100:1001"
     depends_on:
       - db
     entrypoint: [ "poetry", "run" ]
@@ -33,7 +33,7 @@ services:
     container_name: my_web_db
     image: postgres:14
     ports:
-      - "1002:5432"
+      - "2200:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
