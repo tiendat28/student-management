@@ -6,29 +6,26 @@ services:
     container_name: my_web_frontend
     build:
       context: ./frontend
-      dockerfile: Dockerfile
-    env_file: .env
+      dockerfile: Dockerfilev
     volumes:
       - './frontend:/app/frontend'
       - './frontend/node_modules:/app/frontend/node_modules'
     ports:
       - '80:3000'
       - '24678:24678'
-    command: ['node', '.output/server/index.mjs']
+    command: ["npm", "run", "serve", "--", "--port", "3000"]
 
   backend:
     container_name: my_web__backend
     build:
       context: ./backend
       dockerfile: Dockerfile
-    env_file: .env
     volumes:
       - ./backend:/app/backend
     ports:
       - "1001:1001"
     depends_on:
       - db
-#        - redis
     entrypoint: [ "poetry", "run" ]
     command: [ "uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "1001" ]
 
