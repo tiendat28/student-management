@@ -3,7 +3,7 @@ version: '3.7'
 services:
 
   frontend:
-    container_name: car_management_web
+    container_name: my_web_frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -17,7 +17,7 @@ services:
     command: ['node', '.output/server/index.mjs']
 
   backend:
-    container_name: car_management_api
+    container_name: my_web__backend
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -33,7 +33,7 @@ services:
     command: [ "uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "1001" ]
 
   db:
-    container_name: car_management_db
+    container_name: my_web_db
     image: postgres:11
     ports:
       - "1002:5432"
