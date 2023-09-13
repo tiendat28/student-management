@@ -28,6 +28,7 @@ class Todolist(BaseModel):
         data = db.query(
             func.json_build_object(
                 'id', Student.id,
+                'user_id', User.id,
                 'fullname', func.concat(User.first_name, ' ', User.last_name)
             ).label('student'),
             func.json_build_object(
@@ -52,7 +53,7 @@ class Todolist(BaseModel):
         ).filter(
             cls.active == 'true'
         ).group_by(
-            Subject.id, Student.id, User.first_name, User.last_name
+            Subject.id, Student.id, User.first_name, User.last_name, User.id
         ).all()
 
         datas = list(map(lambda x: {
@@ -69,6 +70,7 @@ class Todolist(BaseModel):
         data = db.query(
             func.json_build_object(
                 'id', Student.id,
+                'user_id', User.id,
                 'fullname', func.concat(User.first_name, ' ', User.last_name)
             ).label('student'),
             func.json_build_object(
@@ -91,9 +93,9 @@ class Todolist(BaseModel):
         ).join(
             Subject, Subject.id == cls.subject_id 
         ).filter(
-            Student.id == id
+            User.id == id
         ).group_by(
-            Subject.id, Student.id, User.first_name, User.last_name
+            Subject.id, Student.id, User.first_name, User.last_name, User.id
         ).all()
 
         datas = list(map(lambda x: {

@@ -167,7 +167,7 @@ const Assignment = {
             if(!select_answer){
                 alert('Đáp án không được để trống')
             } else {
-                axios.post(API_URL_ANSWER, answer)
+                axios.post(`${API_URL_ANSWER}`, answer)
                 .then(response => {
                     router.push('/S_home/assignment_done')
                     console.log(response)
