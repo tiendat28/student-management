@@ -27,7 +27,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-for="(item, index) in answer[0].questions" :key="item.id"  class="px-8 pt-6 ">
+                <div v-for="(item, index) in questions" :key="item.id"  class="px-8 pt-6 ">
                     <div class="h-[230px] border-gray-300 border-2 rounded-lg">
                         <div class="flex justify-between px-8 pt-8">
                             <div>
@@ -70,6 +70,7 @@ const Result = {
                 {title: 'Thời gian thực hiện', text:'1h'},
             ],
             answer: [],
+            questions: [],
             data: []
         }
     },
@@ -88,6 +89,7 @@ const Result = {
                 const user_id = this.data.id
                 const {data} =await axios.get(`${API_URL_ANSWER}${'of_'}${user_id}`)
                 this.answer = data.filter(item => item.active !==false)
+                this.questions = this.answer[0].questions
             }catch(error){
                 console.log(error)
             }

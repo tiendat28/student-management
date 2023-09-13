@@ -67,17 +67,16 @@ class Subject(BaseModel):
             User.id.label('user_id'),
             cls.id.label('id'),
             func.concat(User.first_name, ' ', User.last_name).label('fullname'),
-            func.ARRAY_TO_STRING(func.ARRAY_AGG(cls.name), ', ').label('subject'),
+            cls.name.label('subject'),
             Teacher.id.label('teacher_id'),
             Student.id.label('student_id')
+        ).filter(
+            User.id == id and cls.active == 'true'
         ).outerjoin(Teacher, Teacher.user_id == User.id
         ).outerjoin(Student, Student.user_id == User.id
         ).join(cls, text(f'COALESCE(Teacher.id, Student.id) = ANY(subject.student_ids)')
         ).group_by(User.id, User.first_name, User.last_name, cls.id, Teacher.id, Student.id
-        ).filter(
-            User.id == id and cls.active == 'true'
         ).all()
-
         result_dict = {}
         for row in user_info:
             user_id = row.user_id
@@ -91,7 +90,7 @@ class Subject(BaseModel):
             key = (user_id, row.fullname)
             if key not in result_dict:
                 result_dict[key] = {
-                    user_type: {f'{user_type}_id': user_id, 'fullname': row.fullname},
+                    user_type: {f'{user_type}_id': user_id,'user_id': row.user_id,'fullname': row.fullname},
                     'subject': []
                 }
             result_dict[key]['subject'].append({'subject_id': row.id, 'name': row.subject})
