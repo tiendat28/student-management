@@ -1,3 +1,56 @@
+drop table IF exists "user" cascade;
+CREATE TABLE "user" (
+    id bigserial,
+    username VARCHAR,
+    password VARCHAR,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    phone VARCHAR,
+    address VARCHAR,
+    email VARCHAR,
+    sex varchar,
+    role VARCHAR,
+    active bool DEFAULT true,
+    CONSTRAINT pkey_user PRIMARY KEY (id)
+);
+INSERT INTO "user" (username, password, role, active) values ('admin', 123, 'Manager', TRUE);
+drop table IF exists teacher cascade;
+CREATE TABLE teacher (
+    id bigserial,
+    user_id INTEGER,
+    active bool DEFAULT true,
+    CONSTRAINT pkey_teacher PRIMARY KEY (id)
+);
+drop table IF exists student cascade;
+CREATE TABLE student (
+    id bigserial,
+    user_id INTEGER,
+    subject_id INTEGER,
+    active bool DEFAULT true,
+    CONSTRAINT pkey_student PRIMARY KEY (id)
+);
+drop table IF exists subject cascade;
+CREATE TABLE subject (
+    id bigserial,
+    teacher_id INTEGER,
+    student_ids INTEGER,
+    name VARCHAR,
+    class_name VARCHAR,
+    timetable VARCHAR,
+    active bool DEFAULT true,
+    CONSTRAINT pkey_subject PRIMARY KEY (id)
+);
+drop table IF exists attendance cascade;
+CREATE TABLE attendance (
+    id bigserial,
+    subject_id INTEGER,
+    teacher_id INTEGER,
+    student_id INTEGER,
+    date DATE,
+    status VARCHAR,
+    active bool DEFAULT true,
+    CONSTRAINT pkey_attendance PRIMARY KEY (id)
+);
 drop table IF exists questions cascade;
 CREATE TABLE questions (
     id bigserial,
