@@ -1,2 +1,2 @@
-const API_URL_SUBJECT = 'http://127.0.0.1:8000/subject/'
+const API_URL_SUBJECT = 'https://api.autoxuanphuc.com.vn/subject/'
 export default API_URL_SUBJECT

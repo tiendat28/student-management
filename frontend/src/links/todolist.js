@@ -1,2 +1,2 @@
-const API_URL_TODOLIST = 'http://127.0.0.1:8000/todolist/'
+const API_URL_TODOLIST = 'https://api.autoxuanphuc.com.vn/todolist/'
 export default API_URL_TODOLIST
