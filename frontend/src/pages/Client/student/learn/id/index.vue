@@ -72,14 +72,14 @@ const Assignment = {
             }
         },
         Save(){
-            const subject = this.classdata.find(item => item.student.student_id === this.data.id).subject
+            const subject = this.classdata.find(item => item.student.user_id === this.data.id).subject
             const subject_id = subject.filter(item => item.name === this.addtodo.subject_id)[0].subject_id
             this.addtodo.subject_id = subject_id
             if(true){
                 axios.post(`${API_URL_TODOLIST}`, 
                     {
                         subject_id: this.addtodo.subject_id,
-                        student_id: this.data.id,
+                        student_id: this.classdata[0].student.student_id,
                         name: this.addtodo.name,
                         time: this.addtodo.time,
                         level: this.addtodo.level,
