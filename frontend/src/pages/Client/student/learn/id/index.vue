@@ -72,6 +72,8 @@ const Assignment = {
             }
         },
         Save(){
+            console.log(this.classdata)
+            console.log(this.data)
             const subject = this.classdata.find(item => item.student.user_id === this.data.id).subject
             const subject_id = subject.filter(item => item.name === this.addtodo.subject_id)[0].subject_id
             this.addtodo.subject_id = subject_id
