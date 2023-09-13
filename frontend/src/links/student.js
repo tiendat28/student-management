@@ -1,2 +1,2 @@
-const API_URL_STUDENT = 'http://127.0.0.1:8000/student/'
+const API_URL_STUDENT = 'https://api.autoxuanphuc.com.vn/student/'
 export default API_URL_STUDENT

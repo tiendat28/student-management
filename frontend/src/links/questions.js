@@ -1,2 +1,2 @@
-const API_URL_QUESTIONS = 'http://127.0.0.1:8000/questions/'
+const API_URL_QUESTIONS = 'https://api.autoxuanphuc.com.vn/questions/'
 export default API_URL_QUESTIONS

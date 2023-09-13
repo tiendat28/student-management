@@ -92,7 +92,7 @@ const Login = {
             })
             console.log(info)
             if(info){
-                axios.post(`http://127.0.0.1:8000/token/?username=${username}&password=${password}`,this.token)
+                axios.post(`https://api.autoxuanphuc.com.vn/token/?username=${username}&password=${password}`,this.token)
                 .then(response => {
                     const userRole = this.data.find(item => item.username === username).role
                     if (userRole === 'Manager') {
