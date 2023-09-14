@@ -14,12 +14,12 @@
                             <span class="text-sm">{{ item.text }}</span>
                         </router-link>
                     </div>
-                    <div class="hover w-full relative top-[170px]">
+                    <!-- <div class="hover w-full relative top-[320px]">
                         <div class="flex items-center flex-col py-3">
                             <v-icon :size="30">mdi-help-circle-outline</v-icon>
                             <span class="text-sm">Trợ giúp</span>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -34,10 +34,8 @@ const Navigation = {
                 {icon: 'mdi-home-outline',text: 'Trang chủ', name: 'S_homepage'},
                 {icon: 'mdi-chat-processing-outline',text: 'Trò chuyện', name: 'S_chat'},
                 {icon: 'mdi-account-group',text: 'Lớp học', name: 'S_courses'},
-                {icon: 'mdi-bell-ring-outline',text: 'Thông báo'},
                 {icon: 'mdi-sword-cross',text: 'Bài Tập', name: 'S_assignment'},
                 {icon: 'mdi-file-alert-outline',text: 'File', name: 'S_file'},
-                {icon: 'mdi-book-edit-outline',text: 'Kết quả'},
                 {icon: 'mdi-flip-horizontal',text: 'Tự học', name: 'S_learn'},
             ]
         }
