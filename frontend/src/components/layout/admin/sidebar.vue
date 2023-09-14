@@ -30,13 +30,7 @@ const Sidebar = {
         return{
             items: [
                 {icon: 'mdi-home',text: 'QL Thành viên', name: 'member'},
-                {icon: 'mdi-comment-account',text: 'QL Lớp học', name: 'class'},
-                {icon: 'mdi-book-account-outline',text: 'QL Điểm số'},
-                {icon: 'mdi-bell-ring',text: 'QL Thông báo'},
-                // {icon: 'mdi-sword-cross',text: 'Giao Bài Tập', name: 'homework'},
-                // {icon: 'mdi-file-alert-outline',text: 'Giao Bài Tập File', name: 'fileassign'},
-                // {icon: 'mdi-book-edit-outline',text: 'Kết quả làm bài', name: 'results'},
-                // {icon: 'mdi-flip-horizontal',text: 'Tự học', name: 'seltlearn'},
+                {icon: 'mdi-comment-account',text: 'QL Lớp học', name: 'class'}
             ],
             a: null,
         }

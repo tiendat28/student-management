@@ -51,10 +51,10 @@ const Header = {
         return{
             data: [],
             logout: [
-                {icon: 'mdi-cog',text: 'Cài đặt & quyền riêng tư'},
-                {icon: 'mdi-help-circle-outline',text: 'Trợ giúp & hỗ trợ'},
-                {icon: 'mdi-weather-night',text: 'Màn hình & trợ năng'},
-                {icon: 'mdi-logout',text: 'Đăng xuất'},
+                // {icon: 'mdi-cog',text: 'Cài đặt & quyền riêng tư'},
+                // {icon: 'mdi-help-circle-outline',text: 'Trợ giúp & hỗ trợ'},
+                // {icon: 'mdi-weather-night',text: 'Màn hình & trợ năng'},
+                {icon: 'mdi-logout',text: 'Đăng xuất'}
             ],
         }
     },
