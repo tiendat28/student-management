@@ -154,7 +154,7 @@ const Assignment = {
                     q_id: item.id,
                     user_id: user_id,
                     select_answer: item.option, 
-                    is_correct: false
+                    is_correct:false
                 }
             })
             let select_answer = true
