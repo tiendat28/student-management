@@ -9,7 +9,7 @@ class Answer(BaseModel):
     __tablename__ = "answers"
 
     q_id = Column(Integer, ForeignKey("questions.id"))
-    user_id = Column(Integer, ForeignKey("user.id"), unique = True)
+    user_id = Column(Integer,ForeignKey("user.id"))
     select_answer = Column(String)
     is_correct = Column(Boolean)
 

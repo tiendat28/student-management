@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="relative top-0 left-[90px] overflow-auto table-reponsive bg-gray-100 w-[85%] h-[700px]">
-                <div v-for="item in chat" :key="item">
+                <div v-for="item in chat" :key="item.id">
                     <div class="flex pt-4">
                         <div class="flex justify-center items-center">
                             <v-img class="w-[45px] h-[45px] rounded-full" :src="require('@/assets/nam.jpg')"></v-img>
