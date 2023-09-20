@@ -1,6 +1,6 @@
 <template>
-    <div id="courses" class="container p-6 mx-auto">
-        <div class="flex flex-col justify-center items-center uppercase text-[#06b6d4] text-2xl font-medium p-6">Chọn khóa học</div>
+    <div id="courses" class="container p-12 mx-auto">
+        <div class="flex flex-col justify-center items-center uppercase text-[#06b6d4] text-5xl font-medium p-10">Chọn khóa học</div>
         <div class="flex justify-between items-center">
             <div class="w-[40%]">
                 <h1 class="text-xl text-[#cbd5e1] font-normal pb-3">Choose what to learn</h1>

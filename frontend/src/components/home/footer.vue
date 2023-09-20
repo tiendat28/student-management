@@ -1,5 +1,5 @@
 <template>
-    <footer id="contact" class="bg-slate-900">
+    <footer id="contact" class="bg-slate-700">
         <div class="container text-black mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
             <div class="w-full lg:flex lg:w-full lg:justify-between lg:items-center mx-auto ">
                 <div class="w-full lg:w-[30%] pr-3">
