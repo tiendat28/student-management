@@ -1,5 +1,5 @@
 <template>
-   <div class="container flex justify-between items-center p-0 mx-auto md:flex md:justify-between md:items-center">
+   <div class="flex justify-between items-center p-0 mx-auto md:flex md:justify-between md:items-center">
         <v-carousel hide-delimiters height="600">
             <v-carousel-item
             v-for="(item,i) in items"
